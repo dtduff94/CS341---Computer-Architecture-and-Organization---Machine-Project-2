@@ -1,0 +1,73 @@
+Script started on Tue 22 Oct 2019 04:17:57 AM EDT
+tuser@tutor-vserver:~$ exitmtip -f tiny.lnxls[Kscp dtduff94@users.cs.umb.edu:cs341/mp2/warmup/tiny.* .[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cls[Kscp dtduff94@users.cs.umb.edu:cs341/mp2/warmup/tiny.lnx . [A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cls[K
+[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cogouts[Kscp dtduff94@users.cs.umb.edu:cs341/mp2/warmup/tiny.lnx . [A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cls[K
+[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cogoutmtip -f count.lnxscp dtduff94@users.cs.umb.edu:cs341/mp2/count.lnx .[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[34Pmtip -f count.lnxscp dtduff94@users.cs.umb.edu:cs341/mp2/count.lnx .
+dtduff94@users.cs.umb.edu's password: 
+count.lnx                                       0%    0     0.0KB/s   --:-- ETAcount.lnx                                     100%   26KB  26.2KB/s   00:00    
+tuser@tutor-vserver:~$ scp dtduff94@users.cs.umb.edu:cs341/mp2/count.lnx .[C[C[C[1P .[1P .[1P .* .
+dtduff94@users.cs.umb.edu's password: 
+count.lnx                                       0%    0     0.0KB/s   --:-- ETAcount.lnx                                     100%   26KB  26.2KB/s   00:00    
+count.opc                                       0%    0     0.0KB/s   --:-- ETAcount.opc                                     100%  190     0.2KB/s   00:00    
+count.s                                         0%    0     0.0KB/s   --:-- ETAcount.s                                       100% 2082     2.0KB/s   00:00    
+count.s~                                        0%    0     0.0KB/s   --:-- ETAcount.s~                                      100% 2080     2.0KB/s   00:00    
+count.syms                                      0%    0     0.0KB/s   --:-- ETAcount.syms                                    100% 1775     1.7KB/s   00:00    
+tuser@tutor-vserver:~$ ls
+[0m[01;32mcount.lnx[0m   [01;34minclude[0m                      [01;34mtestelf[0m       tiny.opc   tutor.opc
+count.opc   [01;34mlib[0m                          testelf.syms  tiny.s     typescript
+count.s     mp2_warmup_typescript_part2  [01;32mtest.lnx[0m      tutor.c
+count.s~    [01;34mtestaout[0m                     test.s        [01;32mtutor.lnx[0m
+count.syms  test.c                       [01;32mtiny.lnx[0m      tutor.o
+tuser@tutor-vserver:~$ lsscp dtduff94@users.cs.umb.edu:cs341/mp2/count.* .[2@lnx[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cexit[Kmtip -f tiny.lnxls[Kmtip -f tiny.lnxls[Kscp dtduff94@users.cs.umb.edu:cs341/mp2/warmup/tiny.* .[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cls[Kscp dtduff94@users.cs.umb.edu:cs341/mp2/warmup/tiny.lnx . [A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cls[K
+[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cogoutmtip -f count.lnxscp dtduff94@users.cs.umb.edu:cs341/mp2/count.lnx .[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[34Pmtip -f count.lnx
+For command help, type ~?
+For help on args, rerun without args
+Code starts at 0x100100
+Using board # 1 
+Please type <CR> to confirm console setting: 
+Setting console dev to COM2Console: colour EGA+ 80x25
+COM1 at 0x03f8 (irq = 4) is a 16550A
+COM2 at 0x02f8 (irq = 3) is a 16550A
+
+                 Welcome to UMB Tutor for the PC
+   UMB Tutor is a 32-bit protected-mode PC debugger/downloader,
+       based on Linux, UMB Tutor for m68k, and remote gdb.
+UMB Tutor is free software and you are welcome to distribute copies
+of it under certain conditions.  There is no warranty for this program.
+The copyright and warranty provisions follow the Gnu general public
+license, available for view in gdb and elsewhere.  Full sources available.
+--bugs, suggestions, questions to eoneil@cs.umb.edu
+
+Exception 3 at EIP=00057a9b: Breakpoint
+Tutor> ~downloading count.lnx
+
+.......Done.
+
+Download done, setting EIP to 100100.
+Tutor> go 100100
+Enter a string of characters:
+MachuPichu
+Enter a character to count:
+h
+The number of h's in the string MachuPichu is 2
+Exception 3 at EIP=00100110: Breakpoint
+Tutor> go 100100
+Enter a string of characters:
+Boston
+Enter a character to count:
+t
+The number of t's in the string Boston is 1
+Exception 3 at EIP=00100110: Breakpoint
+Tutor> go 100100
+Enter a string of characters:
+labordoodle
+Enter a character to count:
+d
+The number of d's in the string labordoodle is 2
+Exception 3 at EIP=00100110: Breakpoint
+Tutor> ~q 
+Quit handler: 
+killing process 1914 Leaving board #1
+tuser@tutor-vserver:~$ s[Kexit
+exit
+
+Script done on Tue 22 Oct 2019 04:22:03 AM EDT

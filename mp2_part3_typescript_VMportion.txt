@@ -1,0 +1,100 @@
+Script started on Mon 04 Nov 2019 02:06:38 AM EST
+tuser@tutor-vserver:~$ exitscript[2Pexitmtip -f printbin.lnxls -al[K[2Pexitgdb printbin.lnx[10Plogoutgdb printbin.lnx[10Plogoutgdb printbin.lnxtar rem /dev/ttyS0mtip -f printbin.lnxscp dtduff94@users.cs.umb.edu:cs341/mp2/printbin.lnx .[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[34Pmtip -f printbin.lnxscp dtduff94@users.cs.umb.edu:cs341/mp2/printbin.lnx .
+dtduff94@users.cs.umb.edu's password: 
+printbin.lnx                                    0%    0     0.0KB/s   --:-- ETAprintbin.lnx                                  100%   26KB  26.2KB/s   00:00    
+tuser@tutor-vserver:~$ scp dtduff94@users.cs.umb.edu:cs341/mp2/printbin.lnx .[1P[1P[1P[1P[1P[1P[1P[1P[1@s[1@t[1@r[1@n[1@c[1@p[1@y
+dtduff94@users.cs.umb.edu's password: 
+strncpy.lnx                                     0%    0     0.0KB/s   --:-- ETAstrncpy.lnx                                   100%   27KB  27.2KB/s   00:00    
+tuser@tutor-vserver:~$ pwd
+/home/tuser
+tuser@tutor-vserver:~$ lss -lg
+bash: lss: command not found
+tuser@tutor-vserver:~$ ls -lg
+total 240
+-rwxr-xr-x 1 tuser 26842 Oct 22 13:45 [0m[01;32mcount.lnx[0m
+-rw-r--r-- 1 tuser   190 Oct 22 13:45 count.opc
+-rw-r--r-- 1 tuser  2064 Oct 22 13:45 count.s
+-rw-r--r-- 1 tuser  1775 Oct 22 13:45 count.syms
+drwxr-sr-x 2 tuser  4096 Jul 20  2015 [01;34minclude[0m
+drwxr-sr-x 2 tuser  4096 Jul 20  2015 [01;34mlib[0m
+-rw-r--r-- 1 tuser  5046 Oct 22 04:22 mp2_part1_typescript_VMportion
+-rw-r--r-- 1 tuser  9719 Nov  4 01:24 mp2_part2_typescript_VMportion_and_Debugging
+-rw-r--r-- 1 tuser  5911 Oct 22 04:04 mp2_warmup_typescript_part2
+-rwxr-xr-x 1 tuser 26788 Nov  4 02:06 [01;32mprintbin.lnx[0m
+-rwxr-xr-x 1 tuser 27884 Nov  4 02:07 [01;32mstrncpy.lnx[0m
+drwxr-sr-x 2 tuser  4096 Jul 20  2015 [01;34mtestaout[0m
+-rw-r--r-- 1 tuser   818 Jul 20  2015 test.c
+drwxr-sr-x 2 tuser  4096 Jul 20  2015 [01;34mtestelf[0m
+-rw-r--r-- 1 tuser   688 Jul 20  2015 testelf.syms
+-rwxr-xr-x 1 tuser 31650 Sep 16 12:21 [01;32mtest.lnx[0m
+-rw-r--r-- 1 tuser    67 Jul 20  2015 test.s
+-rwxr-xr-x 1 tuser   229 Oct 22 04:01 [01;32mtiny.lnx[0m
+-rw-r--r-- 1 tuser    71 Oct 22 04:01 tiny.opc
+-rw-r--r-- 1 tuser   103 Oct 22 04:01 tiny.s
+-rw-r--r-- 1 tuser  2210 Oct  1 01:11 tutor.c
+-rwxr-xr-x 1 tuser 29600 Oct  1 01:11 [01;32mtutor.lnx[0m
+-rw-r--r-- 1 tuser  4080 Oct  1 01:11 tutor.o
+-rw-r--r-- 1 tuser   725 Oct  1 01:11 tutor.opc
+-rw-r--r-- 1 tuser     0 Nov  4 02:06 typescript
+tuser@tutor-vserver:~$ ls -lgs -lg[4Ppwdscp dtduff94@users.cs.umb.edu:cs341/mp2/strncpy.lnx .[1@printbin[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cexit[Kscript[2Pexitmtip -f printbin.lnxls -al[K[2Pexitls -almtip -f printbin.lnx[1P.lnx[1P.lnx[1P.lnx[1P.lnx[1P.lnx[1P.lnx[1P.lnx[1P.lnxs.lnxt.lnxr.lnxn.lnxc.lnxp.lnxy.lnx
+For command help, type ~?
+For help on args, rerun without args
+Code starts at 0x100100
+Using board # 1 
+Please type <CR> to confirm console setting: 
+Setting console dev to COM2Console: colour EGA+ 80x25
+COM1 at 0x03f8 (irq = 4) is a 16550A
+COM2 at 0x02f8 (irq = 3) is a 16550A
+
+                 Welcome to UMB Tutor for the PC
+   UMB Tutor is a 32-bit protected-mode PC debugger/downloader,
+       based on Linux, UMB Tutor for m68k, and remote gdb.
+UMB Tutor is free software and you are welcome to distribute copies
+of it under certain conditions.  There is no warranty for this program.
+The copyright and warranty provisions follow the Gnu general public
+license, available for view in gdb and elsewhere.  Full sources available.
+--bugs, suggestions, questions to eoneil@cs.umb.edu
+
+Exception 3 at EIP=00057a9b: Breakpoint
+Tutor> ~downloading strncpy.lnx
+
+.......Done.
+
+Download done, setting EIP to 100100.
+Tutor> go 100100
+Enter a string of characters:
+Happiness
+Enter the number of characters to copy:
+5
+The strncpy function returned the correct pointer value.
+The strncpy function copied the data correctly.
+The content of the first 5 characters of array s is: Happi
+Exception 3 at EIP=00100110: Breakpoint
+Tutor> <Esc>
+A
+No such command: A, use h command for help
+Tutor> go 100100
+Enter a string of characters:
+Commmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm
+Enter the number of characters to copy:
+20
+The strncpy function returned the correct pointer value.
+The strncpy function copied the data correctly.
+The content of the first 20 characters of array s is: Commmmmmmmmmmmmmmmmm
+Exception 13 at EIP=00100364: General protection violation
+Tutor> go 100100
+Enter a string of characters:
+
+Enter the number of characters to copy:
+6
+The strncpy function returned the correct pointer value.
+The strncpy function copied the data correctly.
+The content of the first 6 characters of array s is: Commmm
+Exception 3 at EIP=00100110: Breakpoint
+Tutor> ~q 
+Quit handler: 
+killing process 2008 Leaving board #1
+tuser@tutor-vserver:~$ exit
+exit
+
+Script done on Mon 04 Nov 2019 02:10:00 AM EST

@@ -1,0 +1,100 @@
+Script started on Mon Nov  4 01:47:32 2019
+warning: could not update utmp entry
+blade57(1)% ls -al
+total 212
+-rw-r--r--   1 dtduff94     2064 Oct 22 14:02 #count.s#
+-rw-r--r--   1 dtduff94     1795 Nov  3 23:29 #printbin.syms#
+drwxr-xr-x   4 dtduff94     4096 Nov  4 01:47 .
+drwxrws---   5 dtduff94     4096 Oct 20 18:07 ..
+-rwxr-xr-x   1 dtduff94    26842 Oct 22 13:45 count.lnx
+-rw-r--r--   1 dtduff94      190 Oct 22 13:45 count.opc
+-rw-r--r--   1 dtduff94     2064 Oct 22 14:01 count.s
+-rw-r--r--   1 dtduff94     1775 Oct 22 13:45 count.syms
+-rw-r--r--   1 dtduff94     2064 Oct 22 13:39 count.s~
+-rw-r--r--   1 dtduff94      399 Oct 20 18:07 countc.c
+-rw-r--r--   1 dtduff94     1644 Oct 20 22:58 countc.opc
+-rw-r--r--   1 dtduff94     2173 Oct 20 18:07 makefile
+-rw-r--r--   1 dtduff94     4482 Oct 22 04:16 mp2_part1_typescript_UNIXportion
+-rw-r--r--   1 dtduff94     5046 Oct 22 04:23 mp2_part1_typescript_VMportion
+-rw-r--r--   1 dtduff94     9719 Nov  4 01:34 mp2_part2_typescript_VMportion_and_Debugging
+drwxr-xr-x   2 dtduff94     4096 Oct 22 20:07 part1
+-rwxr-xr-x   1 dtduff94    26788 Nov  4 00:58 printbin.lnx
+-rw-r--r--   1 dtduff94      244 Nov  4 00:58 printbin.opc
+-rw-r--r--   1 dtduff94      463 Nov  4 00:58 printbin.s
+-rw-r--r--   1 dtduff94     1809 Nov  4 00:58 printbin.syms
+-rw-r--r--   1 dtduff94      503 Nov  4 00:55 printbin.s~
+-rw-r--r--   1 dtduff94      395 Oct 20 18:07 printbinc.c
+-rw-r--r--   1 dtduff94     1506 Oct 28 01:38 printbinc.opc
+-rwxr-xr-x   1 dtduff94    27884 Nov  3 19:49 strncpy.lnx
+-rw-r--r--   1 dtduff94      149 Nov  3 19:49 strncpy.opc
+-rw-r--r--   1 dtduff94      444 Nov  3 19:49 strncpy.s
+-rw-r--r--   1 dtduff94     1849 Nov  3 19:49 strncpy.syms
+-rw-r--r--   1 dtduff94      444 Nov  3 19:48 strncpy.s~
+-rw-r--r--   1 dtduff94      877 Nov  3 18:24 strncpyc.c
+-rw-r--r--   1 dtduff94      906 Nov  3 18:18 strncpyc.c~
+lrwxrwxrwx   1 dtduff94       13 Nov  4 00:58 syms -> printbin.syms
+-rw-r--r--   1 dtduff94        0 Nov  4 01:47 typescript
+drwxr-xr-x   2 dtduff94     4096 Oct 22 04:06 warmup
+blade57(2)% cat printbinc.c
+/* printbinc.c: driver for printbin.s 
+   bob wilson 01/20/2012 
+   modified by Ron Cheung 3/8/2015   */
+
+extern char *printbin(unsigned char);
+
+int main(void)
+{
+  unsigned int x;
+
+  printf("enter the character's ascii value in hex: \n");
+  scanf("%x",&x);
+  printf("The binary format for character %c is %s\n", 
+                                 x,   printbin((unsigned char)x));
+  return 0;
+}
+
+blade57(3)% cat printbin.s
+#printbin.s
+        .data
+        result:
+                .ascii "0000 0000\0"
+        .text
+        .global _printbin
+_printbin:      
+        pushl   %ebp
+        movl    %esp, %ebp
+        movl    8(%ebp), %dl
+        movl    $result, %edi
+        movl    %edi, %eax
+        movl    $0x80, %ebx
+        call    donibble
+        xorl    %ecx, %ecx
+        incl    %edi
+        call    donibble
+        movl    $result, %eax   
+        call    ending
+        
+donibble:
+        movl    $4, %ecx
+loop1:  
+        testb   %bl, %dl
+        jz      zero
+        movb    $0x31, (%edi)
+zero:
+        inc     %edi
+        shrl    %ebx
+        loop    loop1
+        ret
+
+ending:
+        movl    %ebp, %esp                      
+        popl    %ebp
+        ret
+        .end
+        
+
+
+blade57(4)% cat printbin.sc.c[15Dls -al[K[6Dcat printbinc.c.s[K[14D[Kmake A=printbin
+make: `printbin.lnx' is up to date.
+blade57(5)% exit
+script done on Mon Nov  4 01:50:11 2019

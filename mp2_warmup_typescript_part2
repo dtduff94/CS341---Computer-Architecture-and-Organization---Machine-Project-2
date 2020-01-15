@@ -1,0 +1,97 @@
+Script started on Tue 22 Oct 2019 04:00:19 AM EDT
+tuser@tutor-vserver:~$ ls
+[0m[01;32mcount.lnx[0m  [01;34mtestaout[0m  testelf.syms  [01;32mtiny.lnx[0m  tutor.c    tutor.opc
+[01;34minclude[0m    test.c    [01;32mtest.lnx[0m      tiny.opc  [01;32mtutor.lnx[0m  typescript
+[01;34mlib[0m        [01;34mtestelf[0m   test.s        tiny.s    tutor.o
+tuser@tutor-vserver:~$ ls[Kscp dtduff94@users.cs.umb.edu:cs341/mp2/warmup/tiny.lnx . [A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[K.
+dtduff94@users.cs.umb.edu's password: 
+tiny.lnx                                        0%    0     0.0KB/s   --:-- ETAtiny.lnx                                      100%  229     0.2KB/s   00:00    
+tuser@tutor-vserver:~$ ls
+[0m[01;32mcount.lnx[0m  [01;34mtestaout[0m  testelf.syms  [01;32mtiny.lnx[0m  tutor.c    tutor.opc
+[01;34minclude[0m    test.c    [01;32mtest.lnx[0m      tiny.opc  [01;32mtutor.lnx[0m  typescript
+[01;34mlib[0m        [01;34mtestelf[0m   test.s        tiny.s    tutor.o
+tuser@tutor-vserver:~$ lsscp dtduff94@users.cs.umb.edu:cs341/mp2/warmup/tiny.lnx . [A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P .
+[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P .[1P .* .
+dtduff94@users.cs.umb.edu's password: 
+tiny.lnx                                        0%    0     0.0KB/s   --:-- ETAtiny.lnx                                      100%  229     0.2KB/s   00:00    
+tiny.opc                                        0%    0     0.0KB/s   --:-- ETAtiny.opc                                      100%   71     0.1KB/s   00:00    
+tiny.s                                          0%    0     0.0KB/s   --:-- ETAtiny.s                                        100%  103     0.1KB/s   00:00    
+tuser@tutor-vserver:~$ ls
+[0m[01;32mcount.lnx[0m  [01;34mtestaout[0m  testelf.syms  [01;32mtiny.lnx[0m  tutor.c    tutor.opc
+[01;34minclude[0m    test.c    [01;32mtest.lnx[0m      tiny.opc  [01;32mtutor.lnx[0m  typescript
+[01;34mlib[0m        [01;34mtestelf[0m   test.s        tiny.s    tutor.o
+tuser@tutor-vserver:~$ lsscp dtduff94@users.cs.umb.edu:cs341/mp2/warmup/tiny.* .[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cls[Kscp dtduff94@users.cs.umb.edu:cs341/mp2/warmup/tiny.lnx . [A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cls[K
+[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cogoutmtip -f count.lnxscp dtduff94@users.cs.umb.edu:cs341/mp2/count.lnx .[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[34Pmtip -f count.lnx[K[K[K[K[K[K[K[K[K[K[K[K-f tiny.lnx
+For command help, type ~?
+For help on args, rerun without args
+Code starts at 0x100100
+Using board # 1 
+Please type <CR> to confirm console setting: 
+Setting console dev to COM2Console: colour EGA+ 80x25
+COM1 at 0x03f8 (irq = 4) is a 16550A
+COM2 at 0x02f8 (irq = 3) is a 16550A
+
+                 Welcome to UMB Tutor for the PC
+   UMB Tutor is a 32-bit protected-mode PC debugger/downloader,
+       based on Linux, UMB Tutor for m68k, and remote gdb.
+UMB Tutor is free software and you are welcome to distribute copies
+of it under certain conditions.  There is no warranty for this program.
+The copyright and warranty provisions follow the Gnu general public
+license, available for view in gdb and elsewhere.  Full sources available.
+--bugs, suggestions, questions to eoneil@cs.umb.edu
+
+Exception 3 at EIP=00057a9b: Breakpoint
+Tutor> ~downloading tiny.lnx
+
+.Done.
+
+Download done, setting EIP to 100100.
+Tutor> md 100100
+00100100    b8 08 00 00 00 83 c0 03 a3 00 02 00 00 cc 90 90 ................
+Tutor> rd
+EAX=00000001 EBX=00000000   EBP=00057890
+EDX=00000000 ECX=0006967c   ESP=0005788c
+ESI=00013e10 EDI=00051ffc   EIP=00100100
+EFLAGS=0206 (IF=1 SF=0 ZF=0 CF=0 OF=0)
+Tutor> md 200
+00000200    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ................
+Tutor> ms 200 00000000
+Tutor> md 200
+00000200    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ................
+Tutor> rs eip 100100
+Tutor> t
+Exception 1 at EIP=00100105: Debugger interrupt
+Tutor> rd
+EAX=00000008 EBX=00000000   EBP=00057890
+EDX=00000000 ECX=0006967c   ESP=0005788c
+ESI=00013e10 EDI=00051ffc   EIP=00100105
+EFLAGS=0306 (IF=1 SF=0 ZF=0 CF=0 OF=0)
+Tutor> md 200
+00000200    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ................
+Tutor> t
+Exception 1 at EIP=00100108: Debugger interrupt
+Tutor> rd
+EAX=0000000b EBX=00000000   EBP=00057890
+EDX=00000000 ECX=0006967c   ESP=0005788c
+ESI=00013e10 EDI=00051ffc   EIP=00100108
+EFLAGS=0302 (IF=1 SF=0 ZF=0 CF=0 OF=0)
+Tutor> md 200
+00000200    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ................
+Tutor> t
+Exception 1 at EIP=0010010d: Debugger interrupt
+Tutor> rd
+EAX=0000000b EBX=00000000   EBP=00057890
+EDX=00000000 ECX=0006967c   ESP=0005788c
+ESI=00013e10 EDI=00051ffc   EIP=0010010d
+EFLAGS=0302 (IF=1 SF=0 ZF=0 CF=0 OF=0)
+Tutor> md 200
+00000200    0b 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ................
+Tutor> t
+Exception 3 at EIP=0010010e: Breakpoint
+Tutor> ~q 
+Quit handler: 
+killing process 1863 Leaving board #1
+tuser@tutor-vserver:~$ exit
+exit
+
+Script done on Tue 22 Oct 2019 04:04:09 AM EDT

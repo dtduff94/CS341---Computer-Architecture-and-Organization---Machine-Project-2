@@ -1,0 +1,158 @@
+Script started on Mon Nov  4 02:01:36 2019
+warning: could not update utmp entry
+blade57(1)% pwd
+/courses/cs341/f19/cheungr/dtduff94/mp2
+blade57(2)% ls -lg
+total 220
+-rw-r--r--   1 dtduff94 ugrad        2064 Oct 22 14:02 #count.s#
+-rw-r--r--   1 dtduff94 ugrad        9728 Nov  4 01:52 #mp2_part2_typescript_VMportion_and_Debugging#
+-rw-r--r--   1 dtduff94 ugrad        1795 Nov  3 23:29 #printbin.syms#
+-rwxr-xr-x   1 dtduff94 ugrad       26842 Oct 22 13:45 count.lnx
+-rw-r--r--   1 dtduff94 ugrad         190 Oct 22 13:45 count.opc
+-rw-r--r--   1 dtduff94 ugrad        2064 Oct 22 14:01 count.s
+-rw-r--r--   1 dtduff94 ugrad        1775 Oct 22 13:45 count.syms
+-rw-r--r--   1 dtduff94 ugrad        2064 Oct 22 13:39 count.s~
+-rw-r--r--   1 dtduff94 ugrad         399 Oct 20 18:07 countc.c
+-rw-r--r--   1 dtduff94 ugrad        1644 Oct 20 22:58 countc.opc
+-rw-r--r--   1 dtduff94 ugrad        2173 Oct 20 18:07 makefile
+-rw-r--r--   1 dtduff94 ugrad        4482 Oct 22 04:16 mp2_part1_typescript_UNIXportion
+-rw-r--r--   1 dtduff94 ugrad        5046 Oct 22 04:23 mp2_part1_typescript_VMportion
+-rw-r--r--   1 dtduff94 ugrad        3583 Nov  4 01:50 mp2_part2_typescript_UNIXportion
+-rw-r--r--   1 dtduff94 ugrad        9719 Nov  4 01:34 mp2_part2_typescript_VMportion_and_Debugging
+drwxr-xr-x   2 dtduff94 ugrad        4096 Oct 22 20:07 part1
+-rwxr-xr-x   1 dtduff94 ugrad       26788 Nov  4 00:58 printbin.lnx
+-rw-r--r--   1 dtduff94 ugrad         244 Nov  4 00:58 printbin.opc
+-rw-r--r--   1 dtduff94 ugrad         463 Nov  4 00:58 printbin.s
+-rw-r--r--   1 dtduff94 ugrad        1809 Nov  4 00:58 printbin.syms
+-rw-r--r--   1 dtduff94 ugrad         503 Nov  4 00:55 printbin.s~
+-rw-r--r--   1 dtduff94 ugrad         395 Oct 20 18:07 printbinc.c
+-rw-r--r--   1 dtduff94 ugrad        1506 Oct 28 01:38 printbinc.opc
+-rwxr-xr-x   1 dtduff94 ugrad       27884 Nov  3 19:49 strncpy.lnx
+-rw-r--r--   1 dtduff94 ugrad         149 Nov  3 19:49 strncpy.opc
+-rw-r--r--   1 dtduff94 ugrad         444 Nov  3 19:49 strncpy.s
+-rw-r--r--   1 dtduff94 ugrad        1849 Nov  3 19:49 strncpy.syms
+-rw-r--r--   1 dtduff94 ugrad         444 Nov  3 19:48 strncpy.s~
+-rw-r--r--   1 dtduff94 ugrad         877 Nov  3 18:24 strncpyc.c
+-rw-r--r--   1 dtduff94 ugrad         906 Nov  3 18:18 strncpyc.c~
+lrwxrwxrwx   1 dtduff94 ugrad          13 Nov  4 00:58 syms -> printbin.syms
+-rw-r--r--   1 dtduff94 ugrad           0 Nov  4 02:01 typescript
+drwxr-xr-x   2 dtduff94 ugrad        4096 Oct 22 04:06 warmup
+blade57(3)% cat strncpyc.c
+/* strncpyc.c: driver for testing assembly language mystrncpy function 
+        Bob Wilson
+        4/28/2016
+     Modified by Ron Cheung 3/4/2019
+   */
+
+extern char *mystrncpy(char *s, char *ct, int n);
+
+int main()
+{
+   char s[10], ct[100];
+   int n;
+
+  printf("Enter a string of characters:\n");
+  /* read all inputs until the \n character */
+  scanf("%[^\n]s", ct);
+  printf("Enter the number of characters to copy:\n");
+  scanf("%d", &n);
+
+  if(s == mystrncpy(s, ct,n))
+      printf("The strncpy function returned the correct pointer value.\n");
+  else
+      printf("The strncpy function returned the wrong pointer value.\n");
+  if (!strncmp(s,ct, n))
+      printf("The strncpy function copied the data correctly.\n");
+  else
+      printf("The strncpy function copied the data incorrectly.\n");
+  printf("The content of the first %d characters of array s is: %s\n",n, s);
+  return 0;     
+}
+
+blade57(4)% cat strncpy.s
+#strncpy.s
+        .text
+        .globl _mystrncpy
+_mystrncpy:
+        pushl   %ebp
+        movl    %esp, %ebp
+        subl    $12, %esp
+        movl    8(%ebp), %ecx
+        movl    %ecx, -4(%ebp)
+        movl    12(%ebp), %eax
+        movl    %eax, -8(%ebp) 
+        movl    16(%ebp), %edi
+        movl    %edi, -12(%ebp)
+        jmp     copy
+
+copy:
+        movzbl  (%eax), %edx
+        movl    %edx, (%ecx)
+        testl   %edx, %edx
+        je      done
+        addl    $1, %eax
+        addl    $1, %ecx
+        subl    $1, %edi
+        cmpl    $0, %edi 
+        jne     copy
+
+done:
+        movl    8(%ebp), %eax
+        movl    %ebp, %esp
+        popl    %ebp
+        ret
+        .end 
+        blade57(5)% cat strncpy.sc.c[14Dls -lg[K[6Dcat strncpyc.c.s[K[13D[Kmake A=strncpy
+/groups/ulab/bin/i386-gcc -g -Wall -Wno-implicit -Wshadow -I/groups/ulab/pcdev/include -c -o strncpyc.opc strncpyc.c
+^Z
+Suspended
+blade57(6)% make A=strncpy
+/groups/ulab/bin/i386-gcc -g -Wall -Wno-implicit -Wshadow -I/groups/ulab/pcdev/include -c -o strncpyc.opc strncpyc.c
+^Z
+Suspended
+blade57(7)% ls
+#count.s#
+#mp2_part2_typescript_VMportion_and_Debugging#
+#printbin.syms#
+count.lnx
+count.opc
+count.s
+count.syms
+count.s~
+countc.c
+countc.opc
+makefile
+mp2_part1_typescript_UNIXportion
+mp2_part1_typescript_VMportion
+mp2_part2_typescript_UNIXportion
+mp2_part2_typescript_VMportion_and_Debugging
+part1
+printbin.lnx
+printbin.opc
+printbin.s
+printbin.syms
+printbin.s~
+printbinc.c
+printbinc.opc
+strncpy.lnx
+strncpy.opc
+strncpy.s
+strncpy.syms
+strncpy.s~
+strncpyc.c
+strncpyc.c~
+syms
+typescript
+warmup
+blade57(8)% lsmake A=strncpy
+/groups/ulab/bin/i386-gcc -g -Wall -Wno-implicit -Wshadow -I/groups/ulab/pcdev/include -c -o strncpyc.opc strncpyc.c
+/groups/ulab/bin/i386-ld -N -Ttext 1000e0 -o strncpy.lnx \
+        /groups/ulab/pcdev/lib/startup0.opc /groups/ulab/pcdev/lib/startup.opc \
+        strncpyc.opc strncpy.opc /groups/ulab/pcdev/lib/libc.a
+rm -f syms;/groups/ulab/bin/i386-nm -n strncpy.lnx>strncpy.syms;ln -s strncpy.syms syms
+blade57(9)% make A=strncpy
+make: `strncpy.lnx' is up to date.
+blade57(10)% exit
+There are suspended jobs.
+blade57(11)% exit
+script done on Mon Nov  4 02:04:34 2019

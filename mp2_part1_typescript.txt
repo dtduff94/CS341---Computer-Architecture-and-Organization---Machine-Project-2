@@ -1,0 +1,161 @@
+Script started on Tue Oct 22 04:14:41 2019
+warning: could not update utmp entry
+pwd
+blade57(1)% pwd
+/courses/cs341/f19/cheungr/dtduff94/mp2
+blade57(2)% ls -al
+total 76
+drwxr-xr-x   3 dtduff94     4096 Oct 22 04:14 .
+drwxrws---   5 dtduff94     4096 Oct 20 18:07 ..
+-rwxr-xr-x   1 dtduff94    26842 Oct 22 03:09 count.lnx
+-rw-r--r--   1 dtduff94      190 Oct 22 03:07 count.opc
+-rw-r--r--   1 dtduff94     2082 Oct 22 03:42 count.s
+-rw-r--r--   1 dtduff94     1775 Oct 22 03:09 count.syms
+-rw-r--r--   1 dtduff94     2080 Oct 22 03:32 count.s~
+-rw-r--r--   1 dtduff94      399 Oct 20 18:07 countc.c
+-rw-r--r--   1 dtduff94     1644 Oct 20 22:58 countc.opc
+-rw-r--r--   1 dtduff94     2173 Oct 20 18:07 makefile
+-rw-r--r--   1 dtduff94      395 Oct 20 18:07 printbinc.c
+-rw-r--r--   1 dtduff94      905 Oct 20 18:07 strncpyc.c
+lrwxrwxrwx   1 dtduff94       10 Oct 22 03:09 syms -> count.syms
+-rw-r--r--   1 dtduff94        0 Oct 22 04:14 typescript
+drwxr-xr-x   2 dtduff94     4096 Oct 22 04:06 warmup
+blade57(3)% ls -lg
+total 68
+-rwxr-xr-x   1 dtduff94 ugrad       26842 Oct 22 03:09 count.lnx
+-rw-r--r--   1 dtduff94 ugrad         190 Oct 22 03:07 count.opc
+-rw-r--r--   1 dtduff94 ugrad        2082 Oct 22 03:42 count.s
+-rw-r--r--   1 dtduff94 ugrad        1775 Oct 22 03:09 count.syms
+-rw-r--r--   1 dtduff94 ugrad        2080 Oct 22 03:32 count.s~
+-rw-r--r--   1 dtduff94 ugrad         399 Oct 20 18:07 countc.c
+-rw-r--r--   1 dtduff94 ugrad        1644 Oct 20 22:58 countc.opc
+-rw-r--r--   1 dtduff94 ugrad        2173 Oct 20 18:07 makefile
+-rw-r--r--   1 dtduff94 ugrad         395 Oct 20 18:07 printbinc.c
+-rw-r--r--   1 dtduff94 ugrad         905 Oct 20 18:07 strncpyc.c
+lrwxrwxrwx   1 dtduff94 ugrad          10 Oct 22 03:09 syms -> count.syms
+-rw-r--r--   1 dtduff94 ugrad           0 Oct 22 04:14 typescript
+drwxr-xr-x   2 dtduff94 ugrad        4096 Oct 22 04:06 warmup
+blade57(4)% cat count.s
+# count.s
+        .text
+        .global _count
+
+_count:
+        pushl %ebp              # set up stack frame
+        movl %esp, %ebp         # save %esp in %ebp
+        subl $8, %esp           # automatic variables
+        movl 8(%ebp), %ebx      # move address of char *string to ebx
+        movl %eax, -4(%ebp)     # move contents of eax to memory location ebp-4 bytes
+        movl 12(%ebp), %edx     # move address of char c to edx register
+        movl %edx, -8(%ebp)     # move contents of edx to memory location ebp-8 bytes
+        movl $0, %ecx           # sets ecx register value to 0
+        movl -4(%ebp), %eax     # move address of ebp-4 back to eax
+        movl (%eax), %eax       # moves memory location contained in eax into the eax register
+        cmp -8(%ebp), %eax      # compares current letter in char *string to char c
+        jne .nextletter         # if not equal, jump to .nextletter method
+        je .increment           # if equal, jump to .increment method
+
+.nextletter:
+        movl -4(%ebp), %eax     # moves the address of ebp-4 bytes into eax register  
+        addl $1, -4(%ebp)       # add 1 to the address of ebp-4 bytes (ebp-3 bytes)
+        addl $1, %eax           # add 1 to the value of eax
+        movl (%eax), %eax       # moves memory location contained in eax into the eax register
+        testb %eax, %eax          # tests if eax register value is 0
+        jz .return              # if 0, jump to .return method
+        cmpb -8(%ebp), %eax     # compares current letter in char *string to char c
+        jne .nextletter         # if not equal, jump to .nextletter method
+        je .increment           # if equal, jump to .increment method
+
+.increment:
+        inc  %ecx               # add 1 to eax
+        jmp .nextletter         # jump to .nextletter method
+
+.return:
+        movl %ecx, %eax         # set return value
+        movl %ebp, %esp         # restore %esp from %ebp
+        popl %ebp               # restore %ebp
+        ret                     # return to caller
+        .end                    # end of Assembly Program
+
+blade57(5)% make A=count
+/groups/ulab/bin/i386-as -o count.opc count.s
+/groups/ulab/bin/i386-ld -N -Ttext 1000e0 -o count.lnx \
+        /groups/ulab/pcdev/lib/startup0.opc /groups/ulab/pcdev/lib/startup.opc \
+        countc.opc count.opc /groups/ulab/pcdev/lib/libc.a
+rm -f syms;/groups/ulab/bin/i386-nm -n count.lnx>count.syms;ln -s count.syms syms
+blade57(6)% exit
+script done on Tue Oct 22 04:16:09 2019
+
+Script started on Tue 22 Oct 2019 04:17:57 AM EDT
+tuser@tutor-vserver:~$ exitmtip -f tiny.lnxls[Kscp dtduff94@users.cs.umb.edu:cs341/mp2/warmup/tiny.* .[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cls[Kscp dtduff94@users.cs.umb.edu:cs341/mp2/warmup/tiny.lnx . [A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cls[K
+[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cogouts[Kscp dtduff94@users.cs.umb.edu:cs341/mp2/warmup/tiny.lnx . [A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cls[K
+[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cogoutmtip -f count.lnxscp dtduff94@users.cs.umb.edu:cs341/mp2/count.lnx .[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[34Pmtip -f count.lnxscp dtduff94@users.cs.umb.edu:cs341/mp2/count.lnx .
+dtduff94@users.cs.umb.edu's password: 
+count.lnx                                       0%    0     0.0KB/s   --:-- ETAcount.lnx                                     100%   26KB  26.2KB/s   00:00    
+tuser@tutor-vserver:~$ scp dtduff94@users.cs.umb.edu:cs341/mp2/count.lnx .[C[C[C[1P .[1P .[1P .* .
+dtduff94@users.cs.umb.edu's password: 
+count.lnx                                       0%    0     0.0KB/s   --:-- ETAcount.lnx                                     100%   26KB  26.2KB/s   00:00    
+count.opc                                       0%    0     0.0KB/s   --:-- ETAcount.opc                                     100%  190     0.2KB/s   00:00    
+count.s                                         0%    0     0.0KB/s   --:-- ETAcount.s                                       100% 2082     2.0KB/s   00:00    
+count.s~                                        0%    0     0.0KB/s   --:-- ETAcount.s~                                      100% 2080     2.0KB/s   00:00    
+count.syms                                      0%    0     0.0KB/s   --:-- ETAcount.syms                                    100% 1775     1.7KB/s   00:00    
+tuser@tutor-vserver:~$ ls
+[0m[01;32mcount.lnx[0m   [01;34minclude[0m                      [01;34mtestelf[0m       tiny.opc   tutor.opc
+count.opc   [01;34mlib[0m                          testelf.syms  tiny.s     typescript
+count.s     mp2_warmup_typescript_part2  [01;32mtest.lnx[0m      tutor.c
+count.s~    [01;34mtestaout[0m                     test.s        [01;32mtutor.lnx[0m
+count.syms  test.c                       [01;32mtiny.lnx[0m      tutor.o
+tuser@tutor-vserver:~$ lsscp dtduff94@users.cs.umb.edu:cs341/mp2/count.* .[2@lnx[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cexit[Kmtip -f tiny.lnxls[Kmtip -f tiny.lnxls[Kscp dtduff94@users.cs.umb.edu:cs341/mp2/warmup/tiny.* .[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cls[Kscp dtduff94@users.cs.umb.edu:cs341/mp2/warmup/tiny.lnx . [A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cls[K
+[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cogoutmtip -f count.lnxscp dtduff94@users.cs.umb.edu:cs341/mp2/count.lnx .[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[34Pmtip -f count.lnx
+For command help, type ~?
+For help on args, rerun without args
+Code starts at 0x100100
+Using board # 1 
+Please type <CR> to confirm console setting: 
+Setting console dev to COM2Console: colour EGA+ 80x25
+COM1 at 0x03f8 (irq = 4) is a 16550A
+COM2 at 0x02f8 (irq = 3) is a 16550A
+
+                 Welcome to UMB Tutor for the PC
+   UMB Tutor is a 32-bit protected-mode PC debugger/downloader,
+       based on Linux, UMB Tutor for m68k, and remote gdb.
+UMB Tutor is free software and you are welcome to distribute copies
+of it under certain conditions.  There is no warranty for this program.
+The copyright and warranty provisions follow the Gnu general public
+license, available for view in gdb and elsewhere.  Full sources available.
+--bugs, suggestions, questions to eoneil@cs.umb.edu
+
+Exception 3 at EIP=00057a9b: Breakpoint
+Tutor> ~downloading count.lnx
+
+.......Done.
+
+Download done, setting EIP to 100100.
+Tutor> go 100100
+Enter a string of characters:
+MachuPichu
+Enter a character to count:
+h
+The number of h's in the string MachuPichu is 2
+Exception 3 at EIP=00100110: Breakpoint
+Tutor> go 100100
+Enter a string of characters:
+Boston
+Enter a character to count:
+t
+The number of t's in the string Boston is 1
+Exception 3 at EIP=00100110: Breakpoint
+Tutor> go 100100
+Enter a string of characters:
+labordoodle
+Enter a character to count:
+d
+The number of d's in the string labordoodle is 2
+Exception 3 at EIP=00100110: Breakpoint
+Tutor> ~q 
+Quit handler: 
+killing process 1914 Leaving board #1
+tuser@tutor-vserver:~$ s[Kexit
+exit
+
+Script done on Tue 22 Oct 2019 04:22:03 AM EDT
